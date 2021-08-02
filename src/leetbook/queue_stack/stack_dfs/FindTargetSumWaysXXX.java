@@ -1,6 +1,7 @@
 package leetbook.queue_stack.stack_dfs;
 
 /**
+ * LC 494
  * https://leetcode-cn.com/problems/target-sum/solution/mu-biao-he-by-leetcode-solution-o0cp/
  */
 
@@ -10,13 +11,15 @@ public class FindTargetSumWaysXXX {
     static int ans = 0;
 
     public static void main(String[] args) {
-        int[] a = {1,1,1,1};
-        System.out.println(findTargetSumWaysBT(a,2));
+        int[] a = {1, 1, 1, 1};
+        System.out.println(findTargetSumWaysBT(a, 2));
         // 使用全局变量维护
+
         // dfs1(a, 2, 0, 0);
         // System.out.println(ans);
 
-        System.out.println();dp(a,2);
+        System.out.println();
+        dp(a, 2);
     }
 
     public static int findTargetSumWaysBT(int[] nums, int target) {
@@ -39,27 +42,42 @@ public class FindTargetSumWaysXXX {
         }
     }
 
-    // https://leetcode-cn.com/problems/target-sum/solution/gong-shui-san-xie-yi-ti-si-jie-dfs-ji-yi-et5b/
-    // DFS使用全局变量
+    /**
+     * https://leetcode-cn.com/problems/target-sum/solution/gong-shui-san-xie-yi-ti-si-jie-dfs-ji-yi-et5b/
+     * DFS使用全局变量
+     */
     public static void dfs1(int[] nums, int target, int u, int cur) {
         if (u == nums.length) {
+            // 每找到一条ans + 1
             ans += cur == target ? 1 : 0;
             return;
         }
+        // 加号
         dfs1(nums, target, u + 1, cur + nums[u]);
+        // 减号
         dfs1(nums, target, u + 1, cur - nums[u]);
     }
 
     // DFS接收返回值
     public static int dfs2(int[] nums, int target, int u, int cur) {
+        // 当u为数组长度(即用完所有数字)时
         if (u == nums.length) {
+            // 判断当前值与目标值
             return cur == target ? 1 : 0;
         }
+        // 加号
         int left = dfs2(nums, target, u + 1, cur + nums[u]);
+        // 减号
         int right = dfs2(nums, target, u + 1, cur - nums[u]);
         return left + right;
 
     }
+
+    /*public static int memo(int[] nums, int target) {
+        return dfsMemo(nums,);
+    }
+
+    public static void dfsMemo(int[] nums, )*/
 
     // DP动态规划
     public static int dp(int[] nums, int target) {
@@ -72,6 +90,7 @@ public class FindTargetSumWaysXXX {
         if (target > s) {
             return 0;
         }
+        // 第一维为物品数量, 范围为nums数组的长度?
         int[][] f = new int[n + 1][2 * s + 1];
         // s的右偏移
         f[0][s] = 1;
@@ -88,6 +107,4 @@ public class FindTargetSumWaysXXX {
         }
         return f[n][target + s];
     }
-
-
 }
