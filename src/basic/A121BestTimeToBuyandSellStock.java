@@ -1,6 +1,9 @@
 package basic;
 
-// LC121 只买卖一次股票
+/**
+ * LC121 只买卖一次股票
+ * @author meteora
+ */
 public class A121BestTimeToBuyandSellStock {
     public static void main(String[] args) {
         int[] a = new int[]{ 1, 4, 2, 6};
