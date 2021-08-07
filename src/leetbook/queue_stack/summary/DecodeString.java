@@ -3,10 +3,13 @@ package leetbook.queue_stack.summary;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+/**
+ * LC394字符串解码
+ * 用栈是方便解决嵌套的'['
+ * https://leetcode-cn.com/problems/decode-string/solution/decode-string-fu-zhu-zhan-fa-di-gui-fa-by-jyd/
+ *
+ */
 
-// LC394字符串解码
-// 用栈是方便解决嵌套的'['
-// https://leetcode-cn.com/problems/decode-string/solution/decode-string-fu-zhu-zhan-fa-di-gui-fa-by-jyd/
 public class DecodeString {
     public static void main(String[] args) {
         //char a = '1';
@@ -19,7 +22,10 @@ public class DecodeString {
         System.out.println(Arrays.toString(dfs("2[ac]ac", 0)));
     }
 
-    // 数字栈和 字幕栈分别记录, 遇到 '[' 和 ']' 入栈和出栈
+    /**
+     * 辅助栈
+     * 数字栈和 字母栈分别记录, 遇到 '[' 和 ']' 入栈和出栈
+     */
     public String decodeString(String s) {
         StringBuilder res = new StringBuilder();
         Deque<Integer> multiStack = new ArrayDeque<>();

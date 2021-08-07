@@ -13,7 +13,9 @@ public class DailyTemperatures {
         System.out.println(Arrays.toString(dailyTemperaturesStack(temperatures)));
     }
 
-    //暴力算法
+    /**
+     * 暴力算法
+     */
     public int[] dailyTemperaturesBaoLi(int[] temperatures) {
         int length = temperatures.length;
         int[] res = new int[length];

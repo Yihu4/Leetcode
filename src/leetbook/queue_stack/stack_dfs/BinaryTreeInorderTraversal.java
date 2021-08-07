@@ -2,16 +2,20 @@ package leetbook.queue_stack.stack_dfs;
 
 import java.util.*;
 
-// LC94二叉树中序遍历
-//https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/er-cha-shu-de-zhong-xu-bian-li-by-leetcode-solutio/
-// 中序遍历:先遍历输出左结点，再输出当前结点的数据，再遍历输出右结点
+/**
+ * LC 94二叉树中序遍历
+ * 中序遍历:先遍历输出左结点，再输出当前结点的数据，再遍历输出右结点
+ * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/er-cha-shu-de-zhong-xu-bian-li-by-leetcode-solutio/
+ * @author meteora
+ *
+ */
 public class BinaryTreeInorderTraversal {
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
         root.left.left = new TreeNode(4);
-        System.out.println(morris(root));
+        System.out.println(stack(root));
 
 
     }
@@ -45,8 +49,9 @@ public class BinaryTreeInorderTraversal {
     }
 
     public static void recursion(TreeNode root, List<Integer> res) {
-        if (root == null)
+        if (root == null) {
             return;
+        }
         recursion(root.left, res);
         // 若左孩子为空,才会加入res队列
         res.add(root.val);

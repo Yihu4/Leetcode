@@ -21,23 +21,24 @@ public class EvaluateReversePolishNotation {
     public static int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<>();
         for (String token : tokens) {
-            if (token.equals("+")) {
+            if ("+".equals(token)) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 + num1);
-            } else if (token.equals("-")) {
+            } else if ("-".equals(token)) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 - num1);
-            } else if (token.equals("*")) {
+            } else if ("*".equals(token)) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 * num1);
-            } else if (token.equals("/")) {
+            } else if ("/".equals(token)) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 / num1);
             } else {
+                // 数字
                 stack.push(Integer.parseInt(token));
             }
         }

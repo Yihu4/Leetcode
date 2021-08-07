@@ -14,6 +14,7 @@ import java.util.List;
  * 慢慢地，发现deep copy背后隐藏的逻辑其实是一种对象图（Object Graph）的遍历行为——这东西广泛出现在各语言的垃圾回收、序列化机制里。
  * 内存里各个对象存储空间中放置的引用域/指针就好像有向图里一条边，你沿着它去到达内存中的每个角落、去到当前对象所有的关联对象。
  * 题设里的neibours就像一道开胃菜，它可以是其他collection、甚至object，学会这个deep copy，你也就学会了GC里的可达性分析、你也就学会了如何把RAM中的数据固化到硬盘里。
+ * @author meteora
  */
 
 public class CloneGraph {
@@ -40,8 +41,9 @@ public class CloneGraph {
     }
 
     public static Node cloneGraph(Node node) {
-        if (node == null)
+        if (node == null) {
             return null;
+        }
         return dfs(node);
     }
 

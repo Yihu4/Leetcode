@@ -6,11 +6,13 @@ import java.util.Queue;
 import java.util.Set;
 
 /**
+ * LC 279
  * 给定正整数n，找到若干个完全平方数（比如1, 4, 9, 16, ...）使得它们的和等于 n。你需要让组成和的完全平方数的个数最少。
  * <p>
  * 给你一个整数 n ，返回和为 n 的完全平方数的 最少数量 。
  * <p>
  * 完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。
+ * @author meteora
  */
 
 public class NumSquares {
@@ -67,7 +69,8 @@ public class NumSquares {
         int[] dp = new int[n + 1];
         dp[0] = 0;
         for (int i = 1; i <= n; i++) {
-            dp[i] = i;//最坏的情况都是由1的平方组成
+            //最坏的情况都是由1的平方组成
+            dp[i] = i;
             for (int j = 1; j * j <= i; j++) {
                 //动态规划公式
                 //i - j * j反推之前需要最少需要几次
