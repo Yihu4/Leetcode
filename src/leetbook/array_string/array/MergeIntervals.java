@@ -19,7 +19,7 @@ public class MergeIntervals {
     }
 
     public static int[][] merge(int[][] intervals) {
-        // 按照第二维的第一个元素升序排列
+        // 按照第二维的第一个元素升序排列, lambda
         Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
         int count = -1;
         int[][] res = new int[intervals.length][2];
@@ -50,6 +50,7 @@ public class MergeIntervals {
             return new int[0][2];
         }
         /**
+         *
          * Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]); 假设传来两个值，v1 与 v2，
          * 那么他们的先后顺序以 v1[0] 比 v2[0] 的结果为准，即：若 v1[0] < v2[0] 则 v1 < v2，若 = 则 =，若 > 则 >
          *
@@ -58,6 +59,9 @@ public class MergeIntervals {
          */
 
         // 按照第二维的第一个数字排序数组, 以下三个代码作用一样
+        //对于它，则是针对一些本身没有比较能力的对象（数组）为它们实现比较的功能，
+        // 所以它叫做比较器，是一个外部的东西，通过它定义比较的方式，
+        // 再传到Collection.sort()和Arrays.sort()中对目标排序，而且通过自身的方法compare()定义比较的内容和结果的升降序；
         //Arrays.sort(intervals, (interval1, interval2) -> interval1[0] - interval2[0]);
         //Arrays.sort(intervals, Comparator.comparingInt(interval -> interval[0]));
 
