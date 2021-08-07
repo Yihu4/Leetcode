@@ -43,5 +43,6 @@ public class Intro {
         System.out.println(hello == ("Hel" + "lo"));
         //false.  后者不是常量表达式，是运行时通过串联计算的字符串（lo是一个对象，不是常亮"xxx"），会新建对象
         System.out.println(hello == ("Hel" + lo));
+
     }
 }
