@@ -3,7 +3,7 @@ package leetbook.queue_stack.summary;
 import java.util.LinkedList;
 import java.util.Queue;
 
-// LC542
+// LC 542
 
 /**
  * @author meteora
