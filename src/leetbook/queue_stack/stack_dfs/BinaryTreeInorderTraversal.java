@@ -5,6 +5,7 @@ import java.util.*;
 /**
  * LC 94二叉树中序遍历
  * 中序遍历:先遍历输出左结点，再输出当前结点的数据，再遍历输出右结点
+ * 左下往右上, 层层
  * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/er-cha-shu-de-zhong-xu-bian-li-by-leetcode-solutio/
  * @author meteora
  *
@@ -16,8 +17,6 @@ public class BinaryTreeInorderTraversal {
         root.right = new TreeNode(3);
         root.left.left = new TreeNode(4);
         System.out.println(stack(root));
-
-
     }
 
     // 栈&迭代
