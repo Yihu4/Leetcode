@@ -27,7 +27,6 @@ public class RotateList {
             temp = temp.next;
         }
         ListNode res = temp.next;
-
         // 断开环
         temp.next = null;
 
