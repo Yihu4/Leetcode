@@ -16,7 +16,6 @@ public class tee {
         System.out.println(contains(1));
         System.out.println(contains(3));
 
-
     }
 
     public static void add(int key) {

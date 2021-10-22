@@ -9,7 +9,7 @@ package leetbook.array_string.arrayrelati;
 public class FindMinimumRotatedSortedArray {
     public static void main(String[] args) {
         // 0 6
-        int[] ints = {4, 5, 6, 1, 2, 3, 4};
+        int[] ints = {4, 5, 6, 1};
         System.out.println(findMin1(ints));
 
     }

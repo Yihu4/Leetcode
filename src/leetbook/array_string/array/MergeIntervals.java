@@ -13,6 +13,8 @@ public class MergeIntervals {
     public static void main(String[] args) {
         int[][] nums = new int[][]{{1, 3}, {1, 2}, {4, 5}, {3, 7}};
         test(nums);
+
+
         // 打印二维数组
         //System.out.println((Arrays.deepToString(merge1(nums))));
 
