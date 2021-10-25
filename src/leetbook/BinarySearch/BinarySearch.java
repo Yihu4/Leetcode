@@ -9,11 +9,46 @@ package leetbook.BinarySearch;
 public class BinarySearch {
     public static void main(String[] args) {
         int[] ints = {2, 4, 5, 6, 7};
-        System.out.println(search2(ints,7));
+        System.out.println(search5(ints, 7));
     }
     // 复杂度log n
     // 复杂度log n
     // 复杂度log n
+
+    // left + right + 1 >> 1
+    // left = mid;
+    // right = mid - 1;
+    public static int search4(int[] nums, int target) {
+        int left = 0;
+        // 通过拉长数组
+        int right = nums.length - 1;
+        while (left < right) {
+            int mid = (left + right + 1) / 2;
+            if (nums[mid] <= target) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+    // left + right >>1
+    // right = mid;
+    // left = mid + 1;
+    public static int search5(int[] nums, int target) {
+        int left = 0;
+        // 通过拉长数组
+        int right = nums.length - 1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
 
     /**
      * 二分查找的最基础和最基本的形式。
@@ -71,7 +106,7 @@ public class BinarySearch {
      * 搜索条件需要访问元素的直接左右邻居。
      * 使用元素的邻居来确定它是向右还是向左。
      * 保证查找空间在每个步骤中至少有 3 个元素。
-     * 需要进行后处理。 当剩下 2 个元素时，循环 / 递归结束。 需要评估其余元素是否符合条件。
+     * 需要进行后处理。当剩下 2 个元素时，循环 / 递归结束。需要评估其余元素是否符合条件。
      */
     public int search3(int[] nums, int target) {
         int left = 0, right = nums.length - 1;

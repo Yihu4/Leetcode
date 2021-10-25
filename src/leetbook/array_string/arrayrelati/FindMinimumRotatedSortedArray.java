@@ -3,6 +3,7 @@ package leetbook.array_string.arrayrelati;
 /**
  * LC 153
  * 二分找最小
+ *
  * @author: mete0ra
  * @create: 2021-08-27 09:30
  */
@@ -13,6 +14,7 @@ public class FindMinimumRotatedSortedArray {
         System.out.println(findMin1(ints));
 
     }
+
     // 两个正序
     public static int findMin1(int[] nums) {
         int left = 0;
@@ -32,10 +34,13 @@ public class FindMinimumRotatedSortedArray {
 
     // 双指针
     public static int FindMinDouble(int[] nums) {
-        int slow=0, fast=1;
-        while(fast<nums.length){
-            if(nums[slow]<nums[fast]){
+        int slow = 0, fast = 1;
+        // 直到快指针到头
+        while (fast < nums.length) {
+            // 如果在递增
+            if (nums[slow] < nums[fast]) {
                 fast++;
+                // 找到悬崖了
             } else {
                 return nums[fast];
             }
