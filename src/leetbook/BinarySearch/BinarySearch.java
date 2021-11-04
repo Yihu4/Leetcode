@@ -35,6 +35,7 @@ public class BinarySearch {
     // left + right >>1
     // right = mid;
     // left = mid + 1;
+    // 因为是向下取整,所以right等于mid,而不是mid-1
     public static int search5(int[] nums, int target) {
         int left = 0;
         // 通过拉长数组
@@ -71,7 +72,7 @@ public class BinarySearch {
                 right = mid - 1;
             }
         }
-        return -1;
+        return left;
     }
 
     /**
@@ -109,7 +110,8 @@ public class BinarySearch {
      * 需要进行后处理。当剩下 2 个元素时，循环 / 递归结束。需要评估其余元素是否符合条件。
      */
     public int search3(int[] nums, int target) {
-        int left = 0, right = nums.length - 1;
+        int left = 0;
+        int right = nums.length - 1;
         while (left + 1 < right) {
             // Prevent (left + right) overflow
             int mid = left + (right - left) / 2;
