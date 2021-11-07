@@ -29,4 +29,15 @@ public class RemoveDuplicatesfromSortedArray {
         }
         return current + 1;
     }
+    public int removeDuplicatesNew(int[] nums) {
+        int slow = 0;
+        int fast = 1;
+        while(fast<nums.length){
+            if(nums[fast]!=nums[slow]){
+                nums[++slow]=nums[fast];
+            }
+            fast++;
+        }
+        return slow+1;
+    }
 }
