@@ -1,13 +1,13 @@
-package basic;
+package leetbook.DynamicPrograming.stock;
 
 /**
  * LC121 只买卖一次股票
  * @author meteora
  */
-public class A121BestTimeToBuyandSellStock {
+public class BestTimeToBuyandSellStock {
     public static void main(String[] args) {
         int[] a = new int[]{ 1, 4, 2, 6};
-        System.out.println(maxProfitBL(a));
+        System.out.println(maxProfitAg(a));
     }
 
     public static int maxProfitdp(int[] prices) {
@@ -59,6 +59,40 @@ public class A121BestTimeToBuyandSellStock {
         // 最后返回不持股的最后一天
         return dp[0];
     }
+    // 因为只买卖一次,所以等效于在某个最大值之前的最小值买入
+    public static int maxProfitAg(int[] prices) {
+        if (prices.length==1){
+            return 0;
+        }
+        int[][] dp = new int[prices.length][2];
+        // dp[i][0]代表第i天不持有股票最多现金(没买或者卖了)
+        dp[0][0]=0;
+        // dp[i][1]代表第i天持有股票的最多现金(永远为最小值的负数)
+        dp[0][1]=-prices[0];
+
+        for (int i = 1; i < prices.length; i++) {
+            // 比较昨天不持股, 与昨天持股然后今天卖掉的大小
+
+            dp[i][0] = Math.max(dp[i-1][1]+prices[i],dp[i-1][0]);
+
+            dp[i][1] = Math.max(dp[i-1][1],-prices[i]);
+        }
+        return dp[prices.length-1][0];
+    }
+
+    public static int maxProfitFlatAg(int[] prices) {
+        // 维护两个变量
+        // 当前不持有股票的现金
+        int curMax=0;
+        // 最小值(当前持有股票的最小值
+        int curMin=prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            curMax= Math.max(curMax,prices[i]-curMin);
+            curMin = Math.min(curMin,prices[i]);
+        }
+        return curMax;
+    }
+
 
     // 暴力
     public static int maxProfitBL(int[] prices) {

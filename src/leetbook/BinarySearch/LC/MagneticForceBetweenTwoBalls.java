@@ -44,7 +44,7 @@ public class MagneticForceBetweenTwoBalls {
         // 或者return left - 1
         return ans;
     }
-
+    // 该间隔下的球数量
     private int check(int distance, int[] position, int m) {
         int count = 1;
         int target = position[0] + distance;
@@ -52,7 +52,6 @@ public class MagneticForceBetweenTwoBalls {
             if (i >= target) {
                 target = i + distance;
                 count++;
-
             }
         }
         return count;

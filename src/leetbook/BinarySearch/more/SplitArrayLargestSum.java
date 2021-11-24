@@ -1,5 +1,9 @@
 package leetbook.BinarySearch.more;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  * LC 410
  *
@@ -60,4 +64,39 @@ public class SplitArrayLargestSum {
         }
         return splits;
     }
+
+    @Test
+    public void test() {
+        int[] ints = {7, 2, 5, 10, 8};
+        System.out.println(splitArrayDP(ints, 3));
+    }
+
+    // DP
+    public int splitArrayDP(int[] nums, int m) {
+        int n = nums.length;
+        int[] preSum = new int[n + 1];
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 1; i <= n; i++) {
+            // 前缀和
+            preSum[i] = preSum[i - 1] + nums[i - 1];
+        }
+
+        for (int i = 0; i <= m; i++) {
+            // 数组全取最大值
+            Arrays.fill(dp[i], Integer.MAX_VALUE);
+        }
+
+        dp[0][0] = 0;
+        for (int i = 1; i <= m; i++) {
+            for (int j = i; j <= n; j++) {
+                for (int k = 0; k < j; k++) {// 必须从0开始,因为[1][1]需要k=0
+                    // k是分割点
+                    // max里面是分割后,两个数组的比较
+                    dp[i][j] = Math.min(dp[i][j], Math.max(dp[i - 1][k], preSum[j] - preSum[k]));
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
 }

@@ -2,7 +2,7 @@ package leetbook.queue_stack.summary;
 
 import java.util.Deque;
 import java.util.LinkedList;
-// LC232用双栈实现队列
+// LC 232用双栈实现队列
 public class ImplementQueueUsingStacks {
     public static void main(String[] args) {
         MyQueue myQueue = new MyQueue();

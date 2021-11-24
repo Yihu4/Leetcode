@@ -13,10 +13,10 @@ import java.util.Arrays;
  */
 public class MergeSortedArray {
     @Test
-    public void test(){
+    public void test() {
         int[] ints = {1, 2, 3, 0, 0, 0};
         int[] ints1 = {2, 5, 6};
-        merge(ints,3,ints1,3);
+        mergeAg(ints, 3, ints1, 3);
         System.out.println(Arrays.toString(ints));
     }
 
@@ -40,6 +40,27 @@ public class MergeSortedArray {
             }
             // 从尾开始赋值
             nums1[tail--] = cur;
+        }
+    }
+
+    // again
+    public void mergeAg(int[] nums1, int m, int[] nums2, int n) {
+        int tail = m + n - 1;
+        while (m > 0 || n > 0) {
+            if (m==0){
+                nums1[tail]=nums2[n-1];
+                n--;
+            }else if (n==0){
+                nums1[tail]=nums1[m-1];
+                m--;
+            }else if (nums1[m - 1] >= nums2[n - 1]) {
+                nums1[tail] = nums1[m - 1];
+                m--;
+            } else {
+                nums1[tail] = nums2[n - 1];
+                n--;
+            }
+            tail--;
         }
     }
 

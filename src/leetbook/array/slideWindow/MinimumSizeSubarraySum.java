@@ -17,25 +17,17 @@ public class MinimumSizeSubarraySum {
         minSubArrayLen(7,ints);
 
     }
-    public int minSubArrayLen(int target, int[] nums) {
-        int l = 0;
-        int r = 0;
-        int cur = nums[0];
+    public static int minSubArrayLen(int target, int[] nums) {
+        int left =0;
+        int cur = 0;
         int res = Integer.MAX_VALUE;
-        while (r < nums.length){
-            if (cur<target){
-                if (r==nums.length-1){
-                    break;
-                }
-                // 如果不满足目标,则扩大窗口右边界
-                cur+=nums[++r];
-            }else {
-                // 当前窗口大小r -l + 1
-                res = Math.min(res,r- l + 1);
-                // 如果满足目标,则缩小窗口左边界
-                cur-=nums[l++];
+        for(int right = 0; right < nums.length;right++){
+            cur += nums[right];
+            while(cur >= target){
+                res = Math.min(res,right-left +1);
+                cur -= nums[left++];
             }
         }
-        return res == Integer.MAX_VALUE? 0: res;
+        return res == Integer.MAX_VALUE?0:res;
     }
 }

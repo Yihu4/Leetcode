@@ -33,6 +33,7 @@ public class LinkedListCycle {
     }
 
     // 快慢指针空间O(1)
+    // 如果有环,快慢指针一定相遇(永不停止,只有相等返回true才是出口
     public static boolean hasCycleSF(ListNode head){
         ListNode slow = head;
         ListNode fast = head;

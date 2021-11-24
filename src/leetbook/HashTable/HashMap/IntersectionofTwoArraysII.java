@@ -38,4 +38,27 @@ public class IntersectionofTwoArraysII {
         // int[] intArr = list.stream().mapToInt(Integer::intValue).toArray();
         return d;
     }
+
+    public int[] intersectAg(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (Integer i : nums1) {
+            if (map.containsKey(i)) {
+                map.put(i, map.get(i) + 1);
+            } else {
+                map.put(i, 1);
+            }
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        for (Integer i : nums2) {
+            if (map.containsKey(i)) {
+                map.put(i, map.get(i) - 1);
+                res.add(i);
+                if (map.get(i) == 0) {
+                    map.remove(i);
+                }
+            }
+        }
+        int[] ints = res.stream().mapToInt(p -> p).toArray();
+        return ints;
+    }
 }

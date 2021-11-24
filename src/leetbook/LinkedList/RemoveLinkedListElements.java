@@ -28,6 +28,7 @@ public class RemoveLinkedListElements {
         if (head == null) {
             return null;
         }
+        // 使列表头的val不为target
         while (head.val == val) {
             head = head.next;
             if (head == null) {
@@ -39,6 +40,7 @@ public class RemoveLinkedListElements {
             if (cur.next.val == val) {
                 cur.next = cur.next.next;
             } else {
+                // 必须是else,如果直接 cur = cur.next会遗漏连续target的情况
                 // 因为可能会出现连续的情况, 所以连续时 cur 不能动
                 cur = cur.next;
             }

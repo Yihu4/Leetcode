@@ -17,12 +17,14 @@ public class ReverseList {
             return head;
         }
         ListNode newHead = reverseList(head.next);
+        // 指向本身
         head.next.next = head;
         // head 的 next 最终会指向 null
         head.next = null;
         return newHead;
     }
 
+    // 迭代
     public ListNode reverseListLc(ListNode head) {
         ListNode prev = null, curr = head;
         while (curr != null) {
