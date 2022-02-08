@@ -10,34 +10,28 @@ import java.util.Stack;
  * <p>
  * 左括号必须用相同类型的右括号闭合。
  * 左括号必须以正确的顺序闭合。
+ *
  * @author meteora
  */
 
 public class ValidParentheses {
     //https://leetcode-cn.com/leetbook/read/queue-stack/g9d0h/
-    public boolean validParentheses(String s) {
-        //创建字符栈
+    public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
-        //把字符串变成数组
-        char[] chars = s.toCharArray();
-        //数组中的每一个字符
-        for (char c : chars) {
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
             if (c == '(') {
                 stack.push(')');
             } else if (c == '{') {
                 stack.push('}');
             } else if (c == '[') {
                 stack.push(']');
-            } else if ( stack.isEmpty() || stack.pop() != c){
-                // 1,如果为空,直接返回错误
-                // 2,如果不为空,就要出栈
-                // 如果出栈的不为该符号,也返回错误
+            } else if (stack.isEmpty() || stack.pop() != c) {
+                // 注意要判断栈为空
                 return false;
             }
         }
-        // 如果全部成功出栈, 则true
+        // 如果栈为空,则返回正确
         return stack.isEmpty();
     }
-
-
 }

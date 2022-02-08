@@ -16,7 +16,7 @@ public class WordBreak {
         List<String> strings = new ArrayList<>();
         strings.add("apple");
         strings.add("pen");
-        wordBreakBFS("applepenapple", strings);
+        wordBreak("applepenapple", strings);
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {

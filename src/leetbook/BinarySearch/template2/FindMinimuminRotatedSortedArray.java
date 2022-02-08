@@ -28,6 +28,7 @@ public class FindMinimuminRotatedSortedArray {
         }
         return nums[left];
     }
+
     // 双指针
     public static int FindMinDouble(int[] nums) {
         int slow = 0, fast = 1;

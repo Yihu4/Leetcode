@@ -59,14 +59,6 @@ public class MinimumWindowSubsequence {
         int[][] next = new int[N][26];
         Arrays.fill(last, -1);
 
-        /*for (int i = N - 1; i >= 0; --i) {
-            // 存每个字符出现的最早位置
-            last[S.charAt(i) - 'a'] = i;
-            for (int k = 0; k < 26; ++k) {
-                // 每个下标之后所有字符出现的第一个位置
-                next[i][k] = last[k];
-            }
-        }*/
         for (int i = S.length() - 1; i >= 0; i--) {
             last[S.charAt(i) - 'a'] = i;
             for (int j = 0; j < 26; j++) {

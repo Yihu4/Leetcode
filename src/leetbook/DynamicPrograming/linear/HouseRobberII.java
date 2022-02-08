@@ -1,4 +1,4 @@
-package leetbook.DynamicPrograming.unclassified;
+package leetbook.DynamicPrograming.linear;
 
 import org.junit.Test;
 

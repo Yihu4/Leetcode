@@ -21,6 +21,7 @@ public class MaximumSubarray {
         int res = nums[0];
         for (int i = 1; i < nums.length; i++) {
             if (dp[i - 1] < 0) {
+                // 另起炉灶
                 dp[i] = nums[i];
             } else {
                 // 因为每轮都会有记录res,所以不管加进来的是正还是负

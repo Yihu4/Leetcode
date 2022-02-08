@@ -14,7 +14,6 @@ import java.util.Arrays;
  */
 public class LongestIncreasingSubsequence {
     public int lengthOfLIS(int[] nums) {
-        if (nums.length == 0) return 0;
         // dp[i],当前num[i]存在的上升序列的最长长度
         int[] dp = new int[nums.length];
         int res = 0;
@@ -26,6 +25,22 @@ public class LongestIncreasingSubsequence {
             }
             // 每次保留最大值(不用最后再遍历找最大
             res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
+
+    public int lengthOfLISAG(int[] nums) {
+        int[] dp = new int[nums.length];
+        // 必须全部为1,因为找到之后长度+1为2
+        Arrays.fill(dp,1);
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i]>nums[j]){
+                    dp[i] = Math.max(dp[i],dp[j]+1);
+                }
+            }
+            res = Math.max(res,dp[i]);
         }
         return res;
     }

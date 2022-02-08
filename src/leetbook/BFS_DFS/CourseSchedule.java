@@ -93,7 +93,7 @@ public class CourseSchedule {
         while (!queue.isEmpty()) {
             int cur = queue.poll();
             // 如果在相邻哈希表中没有该课程
-            // 则表示该课程没有出现在课程数组的第一个位置(即是先修课,但是不需要先修课程)
+            // 即不作为先修课,但是入度在过程中被减到0,一般是最后一门课
             if (!adj.containsKey(cur)) {
                 continue;
             }

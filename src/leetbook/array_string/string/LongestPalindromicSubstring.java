@@ -7,6 +7,7 @@ import java.util.Random;
 
 /**
  * LC 5
+ *
  * @author: mete0ra
  * @create: 2021-08-05 18:08
  * Manacher未看
@@ -14,8 +15,8 @@ import java.util.Random;
  */
 public class LongestPalindromicSubstring {
     public static void main(String[] args) {
-        String s = "a";
-        System.out.println(longestPalindromeExpandAroundCenter(s));
+        String s = "aabaa";
+        System.out.println(longestPalindromeDPOptimize(s));
     }
 
     // 暴力
@@ -60,7 +61,9 @@ public class LongestPalindromicSubstring {
                     break;
                 }
                 //长度为 1 和 2 的单独判断下
+                // P[start+1][end-1] 当前区间除去首尾如果为回文的话,比较首尾就行
                 P[start][end] = (len == 1 || len == 2 || P[start + 1][end - 1]) && s.charAt(start) == s.charAt(end);
+                // 如果当前为回文,并且长度超过了记录的最大长度
                 if (P[start][end] && len > maxLen) {
                     maxPal = s.substring(start, end + 1);
                 }
@@ -70,27 +73,29 @@ public class LongestPalindromicSubstring {
     }
 
     // 上面这种方法的dp
-    public String longestPalindromeDP(String s) {
+    public static String longestPalindromeDP(String s) {
         int n = s.length();
         String res = "";
         boolean[][] dp = new boolean[n][n];
         for (int i = n - 1; i >= 0; i--) {
             for (int j = i; j < n; j++) {
-                // j - i 代表长度减去 1
-                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 2 || dp[i + 1][j - 1]);
-                if (dp[i][j] &&  j - i + 1 > res.length()) {
+                // 当前状态由之前的状态转移而来
+                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i + 1 <= 2 || dp[i + 1][j - 1]);
+                if (dp[i][j] && j - i + 1 > res.length()) {
                     res = s.substring(i, j + 1);
                 }
             }
         }
         return res;
     }
+
     // 上面dp一维
-    public String longestPalindromeDPOptimize(String s) {
+    public static String longestPalindromeDPOptimize(String s) {
         int n = s.length();
         String res = "";
         boolean[] P = new boolean[n];
         for (int i = n - 1; i >= 0; i--) {
+            // 从尾到头,因为要用到之前的 P[j-1]
             for (int j = n - 1; j >= i; j--) {
                 P[j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || P[j - 1]);
                 if (P[j] && j - i + 1 > res.length()) {
@@ -188,9 +193,9 @@ public class LongestPalindromicSubstring {
         }
         int start = 0, end = 0;
         for (int i = 0; i < s.length(); i++) {
-            // 从元素
+            // 从元素扩散
             int len1 = expandAroundCenter(s, i, i);
-            // 从空隙
+            // 从空隙扩散
             int len2 = expandAroundCenter(s, i, i + 1);
             int len = Math.max(len1, len2);
             // 记录最大长度以及最长回文位置

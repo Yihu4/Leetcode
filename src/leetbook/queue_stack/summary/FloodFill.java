@@ -45,7 +45,7 @@ public class FloodFill {
         int n = image.length;
         int m = image[0].length;
         // 创建数组的队列
-        Queue<int[]> queue = new LinkedList<int[]>();
+        Queue<int[]> queue = new LinkedList<>();
         // 加入原始节点
         queue.add(new int[]{sr, sc});
         // 原始节点变色

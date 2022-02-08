@@ -1,4 +1,4 @@
-package leetbook.DynamicPrograming.unclassified;
+package leetbook.DynamicPrograming.linear;
 
 import org.junit.Test;
 
@@ -9,8 +9,6 @@ import org.junit.Test;
  * @create: 2021-11-27 17:03
  */
 public class DecodeWays {
-
-
     public int numDecodings(String s) {
         char[] chars = s.toCharArray();
         int[] dp = new int[s.length()];

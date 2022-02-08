@@ -12,15 +12,15 @@ public class JumpGameII {
     @Test
     public void test() {
         int[] ints = {2,3,1,1,4};
-        System.out.println(jumpRe(ints));
+        System.out.println(jump(ints));
     }
 
     public int jump(int[] nums) {
+        // 当前位置能跳到的最远位置
         int[] dp = new int[nums.length];
         if (nums.length==1){
             return 0;
         }
-        // 到达i所需要的次数
         dp[0] = nums[0];
         // 起跳位置的最远距离
         int cur = nums[0];
@@ -39,6 +39,22 @@ public class JumpGameII {
         return count;
     }
 
+    public int jumpdp(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n]; //dp[i]表示跳到i的最小次数
+        dp[0] = 0;
+        for (int i = 1; i < n; i++) {
+            int ans = 0xfffff;
+            for (int j = 0; j < i; j++) { //遍历所有可以跳一次就到达的上一个位置
+                // 在跳跃范围之内
+                if (nums[j] >= i - j) {
+                    ans = Math.min(ans, dp[j] + 1);
+                }
+            }
+            dp[i] = ans;
+        }
+        return dp[n - 1];
+    }
 
     public int jumpGreedy(int[] nums) {
         int end = 0;
